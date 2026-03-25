@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: cardwash-coupon
+  datasource:
+    url: jdbc:mysql://localhost:3306/cardwash_coupon?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    username: root
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikaricp:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.moca.cardwash.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+wechat:
+  miniapp:
+    appid: ${WECHAT_APPID:}
+    secret: ${WECHAT_SECRET:}
+
+jwt:
+  secret: ${JWT_SECRET:cardwash-coupon-secret-key-2024-abcd1234efgh5678}
+  expiration: 86400000  # 24 小时
+
+qr:
+  aes:
+    key: ${QR_AES_KEY:1234567890123456}  # 16 位 AES 密钥
+
+logging:
+  level:
+    com.moca.cardwash: debug
+    com.moca.cardwash.mapper: debug

@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/mine/index",
+    "pages/mine/profile-edit/index",
+    "pages/coupon-detail/index",
+    "pages/order-confirm/index",
+    "pages/order/list",
+    "pages/order-detail/index",
+    "pages/pay-result/index",
+    "pages/merchant/index",
+    "pages/merchant/scan",
+    "pages/merchant/scan-result",
+    "pages/merchant/order-list",
+    "pages/merchant/order-detail",
+    "pages/merchant/coupon-list",
+    "pages/merchant/coupon-edit",
+    "pages/merchant/stats/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1890FF",
+    "navigationBarTitleText": "摩卡-洗护",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1890FF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/order/list",
+        "text": "订单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

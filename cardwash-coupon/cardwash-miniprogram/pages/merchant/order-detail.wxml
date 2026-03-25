@@ -1,0 +1,76 @@
+<!--pages/merchant/order-detail.wxml-->
+<view class="order-detail-page">
+  <!-- 订单状态 -->
+  <view class="status-section status-{{orderDetail.status}}">
+    <text class="status-icon" wx:if="{{orderDetail.status === 0}}">💳</text>
+    <text class="status-icon" wx:if="{{orderDetail.status === 1}}">✅</text>
+    <text class="status-icon" wx:if="{{orderDetail.status === 2}}">✔️</text>
+    <text class="status-text">{{orderDetail.statusText}}</text>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-section">
+    <view class="info-row">
+      <text class="label">订单号</text>
+      <text class="value">{{orderDetail.orderNo}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">下单时间</text>
+      <text class="value">{{orderDetail.createTime}}</text>
+    </view>
+    <view class="info-row" wx:if="{{orderDetail.payTime}}">
+      <text class="label">支付时间</text>
+      <text class="value">{{orderDetail.payTime}}</text>
+    </view>
+  </view>
+
+  <!-- 用户信息 -->
+  <view class="section" wx:if="{{orderDetail.user}}">
+    <view class="section-title">用户信息</view>
+    <view class="user-info">
+      <view class="info-row">
+        <text class="label">昵称</text>
+        <text class="value">{{orderDetail.user.nickname}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">手机号</text>
+        <text class="value">{{orderDetail.user.phone}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class="section">
+    <view class="section-title">商品信息</view>
+    <view class="coupon-info">
+      <view class="coupon-name">{{orderDetail.couponName}}</view>
+      <view class="info-row">
+        <text class="label">总数量</text>
+        <text class="value">{{orderDetail.totalQuantity}}张</text>
+      </view>
+      <view class="info-row">
+        <text class="label">已核销</text>
+        <text class="value">{{orderDetail.usedQuantity}}张</text>
+      </view>
+      <view class="info-row highlight">
+        <text class="label">剩余数量</text>
+        <text class="value price">{{orderDetail.remainingQuantity}}张</text>
+      </view>
+      <view class="info-row">
+        <text class="label">订单金额</text>
+        <text class="value price">¥{{orderDetail.totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核销记录 -->
+  <view class="section" wx:if="{{orderDetail.writeOffRecords && orderDetail.writeOffRecords.length > 0}}">
+    <view class="section-title">核销记录</view>
+    <view class="record-list">
+      <view class="record-item" wx:for="{{orderDetail.writeOffRecords}}" wx:key="id">
+        <view class="record-time">{{item.writeOffTime}}</view>
+        <view class="record-info">核销 {{item.quantity}} 张</view>
+      </view>
+    </view>
+  </view>
+</view>

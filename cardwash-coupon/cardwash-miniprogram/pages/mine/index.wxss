@@ -1,0 +1,149 @@
+/* pages/mine/index.wxss */
+.mine-page {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 用户信息卡片 */
+.user-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.user-card-hover {
+  background-color: #f5f5f5;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.user-info-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-text {
+  font-size: 24rpx;
+  color: #1890FF;
+  font-weight: normal;
+  margin-left: 16rpx;
+}
+
+.phone {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* _section-title */
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+/* 订单状态卡片 */
+.order-cards {
+  display: flex;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx 0;
+  margin-bottom: 32rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.order-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.order-card:last-child {
+  border-right: none;
+}
+
+.card-num {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ddd;
+  margin-bottom: 12rpx;
+}
+
+.card-num.highlight {
+  color: #1890FF;
+}
+
+.card-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 功能菜单 */
+.menu-list {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.menu-name {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #ccc;
+}

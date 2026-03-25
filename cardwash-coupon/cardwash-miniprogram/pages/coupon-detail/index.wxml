@@ -1,0 +1,58 @@
+<!--pages/coupon-detail/index.wxml-->
+<view class="detail-page">
+  <!-- 图片轮播 -->
+  <view class="banner-section">
+    <swiper class="banner-swiper" indicator-dots autoplay circular>
+      <swiper-item wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="info-section">
+    <view class="coupon-name">{{coupon.name}}</view>
+    <view class="coupon-price">
+      <text class="price-symbol">¥</text>
+      <text class="price-value">{{coupon.price}}</text>
+      <text class="price-desc" wx:if="{{coupon.buyAmount > 0}}">买{{coupon.buyAmount}}送{{coupon.sendAmount}}</text>
+    </view>
+    <view class="coupon-sales">已售 {{coupon.sales || 0}} 张</view>
+  </view>
+
+  <!-- 数量选择 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">选择数量</text>
+    </view>
+    <view class="quantity-selector">
+      <view class="qty-btn" bindtap="decreaseQty">-</view>
+      <view class="qty-value">{{quantity}}</view>
+      <view class="qty-btn" bindtap="increaseQty">+</view>
+    </view>
+  </view>
+
+  <!-- 优惠券详情 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">优惠券详情</text>
+    </view>
+    <view class="coupon-desc">{{coupon.description}}</view>
+    <view class="coupon-rules">
+      <view class="rule-item">• 适用于全车型</view>
+      <view class="rule-item">• 有效期：购买后 30 天内有效</view>
+      <view class="rule-item">• 使用方式：出示二维码核销</view>
+      <view class="rule-item">• 本店拥有最终解释权</view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="total-price">
+      <text class="label">合计：</text>
+      <text class="price-symbol">¥</text>
+      <text class="price-value">{{totalPrice}}</text>
+    </view>
+    <button class="submit-btn" bindtap="submitOrder">立即购买</button>
+  </view>
+</view>

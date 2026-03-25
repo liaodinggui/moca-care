@@ -1,0 +1,43 @@
+<!--pages/merchant/order-list.wxml-->
+<view class="order-list-page">
+  <!-- 状态筛选 Tab -->
+  <view class="tab-bar">
+    <view class="tab-item {{statusFilter === '' ? 'active' : ''}}" bindtap="onTabChange" data-status="">全部</view>
+    <view class="tab-item {{statusFilter === '0' ? 'active' : ''}}" bindtap="onTabChange" data-status="0">待付款</view>
+    <view class="tab-item {{statusFilter === '1' ? 'active' : ''}}" bindtap="onTabChange" data-status="1">使用中</view>
+    <view class="tab-item {{statusFilter === '2' ? 'active' : ''}}" bindtap="onTabChange" data-status="2">已完成</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view class="order-card" wx:for="{{orderList}}" wx:key="id">
+      <view class="order-header">
+        <text class="order-no">订单号：{{item.orderNo}}</text>
+        <text class="order-status status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view class="order-body">
+        <view class="coupon-info">
+          <view class="coupon-name">{{item.couponName}}</view>
+          <view class="user-info">
+            <text class="user-name">{{item.userName}}</text>
+            <text class="user-phone">{{item.userPhone}}</text>
+          </view>
+          <view class="progress-info">
+            已核销：{{item.usedQuantity}}/{{item.totalQuantity}}张
+          </view>
+        </view>
+      </view>
+      <view class="order-footer">
+        <view class="order-time">{{item.createTime}}</view>
+        <button class="write-off-btn" wx:if="{{item.status === 1}}" bindtap="goToWriteOff" data-id="{{item.id}}">核销</button>
+        <button class="detail-btn" bindtap="goToDetail" data-id="{{item.id}}">详情</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{orderList.length === 0}}">
+    <text class="empty-icon">📭</text>
+    <text class="empty-text">暂无订单</text>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+<!--pages/merchant/scan-result.wxml-->
+<view class="scan-result-page">
+  <!-- 订单状态 -->
+  <view class="status-section status-{{orderInfo.status}}">
+    <text class="status-icon" wx:if="{{orderInfo.status === 1}}">✅</text>
+    <text class="status-text" wx:if="{{orderInfo.status === 1}}">使用中</text>
+    <text class="status-icon" wx:if="{{orderInfo.status === 2}}">✔️</text>
+    <text class="status-text" wx:if="{{orderInfo.status === 2}}">已完成</text>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-section">
+    <view class="info-row">
+      <text class="label">订单号</text>
+      <text class="value">{{orderInfo.orderNo}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">洗车券</text>
+      <text class="value">{{orderInfo.couponName}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">总数量</text>
+      <text class="value">{{orderInfo.totalQty}}张</text>
+    </view>
+    <view class="info-row">
+      <text class="label">已核销</text>
+      <text class="value">{{orderInfo.usedQty}}张</text>
+    </view>
+    <view class="info-row highlight">
+      <text class="label">剩余数量</text>
+      <text class="value price">{{orderInfo.remainingQty}}张</text>
+    </view>
+  </view>
+
+  <!-- 核销数量 -->
+  <view class="section">
+    <view class="section-title">核销数量</view>
+    <view class="quantity-selector">
+      <view class="qty-btn {{writeOffQty >= orderInfo.remainingQty ? 'disabled' : ''}}" bindtap="decreaseQty">-</view>
+      <view class="qty-value">{{writeOffQty}}</view>
+      <view class="qty-btn {{writeOffQty >= orderInfo.remainingQty ? 'disabled' : ''}}" bindtap="increaseQty">+</view>
+    </view>
+    <view class="max-hint" bindtap="setMaxQty">
+      <text class="hint-text">最大可核销 {{orderInfo.remainingQty}} 张</text>
+    </view>
+  </view>
+
+  <!-- 核销按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn" bindtap="submitWriteOff" disabled="{{writeOffQty > orderInfo.remainingQty}}">
+      确认核销
+    </button>
+  </view>
+</view>

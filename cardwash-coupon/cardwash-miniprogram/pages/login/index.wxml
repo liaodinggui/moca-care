@@ -1,0 +1,64 @@
+<!--pages/login/index.wxml-->
+<view class="login-container">
+  <view class="logo-section">
+    <view class="logo-icon">🚗</view>
+    <view class="app-name">摩卡-洗护</view>
+  </view>
+
+  <view class="welcome-section">
+    <view class="avatar" wx:if="{{avatar}}">
+      <image src="{{avatar}}" mode="aspectFill" />
+    </view>
+    <view class="welcome-text">欢迎登录</view>
+  </view>
+
+  <view class="login-btn-wrapper">
+    <button class="login-btn" bindtap="handleWechatLogin">
+      <text>微信一键登录</text>
+    </button>
+  </view>
+
+  <!-- 角色选择弹窗 -->
+  <view class="role-modal" wx:if="{{showRoleModal}}">
+    <view class="modal-mask" bindtap="closeRoleModal"></view>
+    <view class="modal-content">
+      <view class="modal-title">请选择您的角色身份</view>
+      <view class="role-options">
+        <view class="role-option" bindtap="selectRole" data-role="1">
+          <view class="role-icon">👤</view>
+          <view class="role-name">客户登录</view>
+          <view class="role-desc">购买洗车券<br/>查看订单</view>
+        </view>
+        <view class="role-option" bindtap="selectRole" data-role="2">
+          <view class="role-icon">🏪</view>
+          <view class="role-name">商家登录</view>
+          <view class="role-desc">核销管理<br/>订单管理</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商家选择弹窗 -->
+  <view class="merchant-modal" wx:if="{{showMerchantModal}}">
+    <view class="modal-mask" bindtap="closeMerchantModal"></view>
+    <view class="modal-content">
+      <view class="modal-title">选择您的店铺</view>
+      <view class="merchant-list">
+        <view
+          class="merchant-item {{selectedMerchantId === item.id ? 'selected' : ''}}"
+          wx:for="{{merchantList}}"
+          wx:key="id"
+          bindtap="selectMerchant"
+          data-id="{{item.id}}">
+          <view class="merchant-name">{{item.name}}</view>
+          <view class="merchant-status" wx:if="{{item.status === 1}}">营业中</view>
+          <view class="merchant-status" wx:else>已歇业</view>
+        </view>
+      </view>
+      <view class="merchant-actions">
+        <button class="action-btn secondary" bindtap="addNewMerchant">+ 添加新店铺</button>
+        <button class="action-btn primary" bindtap="confirmSelectMerchant">确认选择</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moca.cardwash.mapper.CouponWriteOffMapper">
+
+    <resultMap id="BaseResultMap" type="com.moca.cardwash.entity.CouponWriteOff">
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="quantity" property="quantity"/>
+        <result column="write_off_time" property="writeOffTime"/>
+        <result column="operator_id" property="operatorId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, order_id, user_id, merchant_id, quantity, write_off_time, operator_id
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM coupon_write_off
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByOrderId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM coupon_write_off
+        WHERE order_id = #{orderId}
+        ORDER BY write_off_time DESC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO coupon_write_off (order_id, user_id, merchant_id, quantity, operator_id)
+        VALUES (#{orderId}, #{userId}, #{merchantId}, #{quantity}, #{operatorId})
+    </insert>
+
+    <!-- 按核销时间统计每天的核销数量 -->
+    <select id="selectWriteOffCountByDate" resultType="com.moca.cardwash.dto.response.StatsVO$DailyStats">
+        SELECT
+            DATE_FORMAT(write_off_time, '%Y-%m-%d') as date,
+            SUM(quantity) as writeOffCount,
+            0 as revenue
+        FROM coupon_write_off
+        WHERE merchant_id = #{merchantId}
+        AND DATE_FORMAT(write_off_time, '%Y-%m-%d') BETWEEN #{startDate} AND #{endDate}
+        GROUP BY DATE_FORMAT(write_off_time, '%Y-%m-%d')
+        ORDER BY date
+    </select>
+
+    <!-- 按订单创建时间统计每天的营业额（只统计已支付订单） -->
+    <select id="selectRevenueByDate" resultType="com.moca.cardwash.dto.response.StatsVO$DailyStats">
+        SELECT
+            DATE_FORMAT(o.create_time, '%Y-%m-%d') as date,
+            0 as writeOffCount,
+            SUM(o.total_amount) as revenue
+        FROM `order` o
+        INNER JOIN coupon c ON o.coupon_id = c.id
+        WHERE c.merchant_id = #{merchantId}
+        AND o.status IN (1, 2)
+        AND DATE_FORMAT(o.create_time, '%Y-%m-%d') BETWEEN #{startDate} AND #{endDate}
+        GROUP BY DATE_FORMAT(o.create_time, '%Y-%m-%d')
+        ORDER BY date
+    </select>
+
+    <!-- 查询今日销售数量（从 order 表，status IN (1,2)） -->
+    <select id="selectSalesCountByDate" resultType="com.moca.cardwash.dto.response.TodayStatsVO$StatsData">
+        SELECT
+            SUM(o.paid_quantity) as count
+        FROM `order` o
+        INNER JOIN coupon c ON o.coupon_id = c.id
+        WHERE c.merchant_id = #{merchantId}
+        AND o.status IN (1, 2)
+        AND DATE_FORMAT(o.create_time, '%Y-%m-%d') = #{date}
+    </select>
+
+    <!-- 查询今日核销数量（只返回数量） -->
+    <select id="selectWriteOffCountOnlyByDate" resultType="com.moca.cardwash.dto.response.TodayStatsVO$StatsData">
+        SELECT
+            SUM(quantity) as count
+        FROM coupon_write_off
+        WHERE merchant_id = #{merchantId}
+        AND DATE_FORMAT(write_off_time, '%Y-%m-%d') = #{date}
+    </select>
+
+    <!-- 查询今日营业额（只返回金额） -->
+    <select id="selectRevenueByDateOnly" resultType="java.math.BigDecimal">
+        SELECT
+            IFNULL(SUM(o.total_amount), 0) as revenue
+        FROM `order` o
+        INNER JOIN coupon c ON o.coupon_id = c.id
+        WHERE c.merchant_id = #{merchantId}
+        AND o.status IN (1, 2)
+        AND DATE_FORMAT(o.create_time, '%Y-%m-%d') = #{date}
+    </select>
+</mapper>

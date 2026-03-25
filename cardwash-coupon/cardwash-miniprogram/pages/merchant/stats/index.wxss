@@ -1,0 +1,159 @@
+/* pages/merchant/stats/index.wxss */
+.container {
+  padding: 24rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 日期筛选 */
+.date-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.divider {
+  font-size: 28rpx;
+  color: #999;
+  margin: 0 24rpx;
+}
+
+.query-btn {
+  margin-left: 24rpx;
+  background-color: #1890FF;
+  color: #fff;
+  border: none;
+  border-radius: 8rpx;
+  padding: 12rpx 32rpx;
+  font-size: 28rpx;
+}
+
+.query-btn::after {
+  border: none;
+}
+
+/* 总计卡片 */
+.summary-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 32rpx;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+}
+
+.summary-value {
+  font-size: 40rpx;
+  color: #1890FF;
+  font-weight: bold;
+}
+
+.summary-divider {
+  width: 2rpx;
+  height: 80rpx;
+  background-color: #e0e0e0;
+  margin: 0 32rpx;
+}
+
+/* 图表容器 */
+.chart-container {
+  background-color: #fff;
+  padding: 32rpx;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.chart-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.chart {
+  width: 100%;
+  height: 400rpx;
+}
+
+/* 数据列表 */
+.data-list {
+  background-color: #fff;
+  padding: 32rpx;
+  border-radius: 16rpx;
+}
+
+.list-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.list-header,
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+}
+
+.list-header {
+  border-bottom: 2rpx solid #f0f0f0;
+  font-weight: 500;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.list-header .col {
+  color: #333;
+}
+
+.list-body .list-row:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.list-body .list-row {
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+}

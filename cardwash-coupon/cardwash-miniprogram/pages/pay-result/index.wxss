@@ -1,0 +1,89 @@
+/* pages/pay-result/index.wxss */
+.pay-result-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+}
+
+.result-container {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 60rpx 40rpx;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.result-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.result-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.result-amount {
+  margin-bottom: 40rpx;
+}
+
+.result-amount .label {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.result-amount .amount {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #52c41a;
+}
+
+.order-info {
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-row .label {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.info-row .value {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 30rpx;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+}
+
+.action-btn.primary {
+  background-color: #1890FF;
+  color: #fff;
+}

@@ -1,0 +1,57 @@
+<!--pages/order-confirm/index.wxml-->
+<view class="confirm-page">
+  <!-- 订单信息卡片 -->
+  <view class="order-card">
+    <view class="card-header">
+      <text class="status-icon">⏳</text>
+      <text class="status-text">待付款</text>
+    </view>
+    <view class="card-body">
+      <view class="info-row">
+        <text class="label">订单号</text>
+        <text class="value">{{order.orderNo}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">商品名称</text>
+        <text class="value">{{order.couponName}}</text>
+      </view>
+      <view class="info-row">
+        <text class="label">数量</text>
+        <text class="value">{{order.totalQuantity}}张
+          <text class="desc" wx:if="{{order.sendQuantity > 0}}">(买{{order.paidQuantity}}送{{order.sendQuantity}})</text>
+        </text>
+      </view>
+      <view class="info-row">
+        <text class="label">创建时间</text>
+        <text class="value">{{order.createTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支付金额 -->
+  <view class="amount-section">
+    <view class="amount-label">应付金额</view>
+    <view class="amount-value">
+      <text class="currency">¥</text>
+      <text class="price">{{order.totalAmount}}</text>
+    </view>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="tips-section">
+    <view class="tips-title">温馨提示</view>
+    <view class="tips-item">· 请在 30 分钟内完成支付</view>
+    <view class="tips-item">· 支付成功后订单生效</view>
+    <view class="tips-item">· 洗车券自购买之日起 30 天内有效</view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="total-info">
+      <text class="label">实付：</text>
+      <text class="price-symbol">¥</text>
+      <text class="price-value">{{order.totalAmount}}</text>
+    </view>
+    <button class="pay-btn" bindtap="handlePay">立即支付</button>
+  </view>
+</view>

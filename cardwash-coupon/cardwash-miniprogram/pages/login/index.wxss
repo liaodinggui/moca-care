@@ -1,0 +1,225 @@
+/* pages/login/index.wxss */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.logo-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.app-name {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20rpx;
+  border: 4rpx solid #fff;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-text {
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.login-btn-wrapper {
+  width: 100%;
+  padding: 0 40rpx;
+}
+
+.login-btn {
+  background-color: #fff;
+  color: #667eea;
+  border: none;
+  border-radius: 50rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.login-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+/* 角色选择弹窗 */
+.role-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 40rpx;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+
+.role-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.role-option {
+  flex: 1;
+  background-color: #f5f5f5;
+  border-radius: 16rpx;
+  padding: 40rpx 20rpx;
+  margin: 0 10rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.role-option:active {
+  background-color: #e6f7ff;
+  transform: scale(1.05);
+}
+
+.role-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.role-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.role-desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* 商家选择弹窗 */
+.merchant-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.merchant-list {
+  max-height: 400rpx;
+  overflow-y: auto;
+  margin-bottom: 24rpx;
+}
+
+.merchant-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #f5f5f5;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid transparent;
+}
+
+.merchant-item.selected {
+  background-color: #e6f7ff;
+  border-color: #1890FF;
+}
+
+.merchant-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.merchant-status {
+  font-size: 24rpx;
+  color: #52c41a;
+  padding: 4rpx 12rpx;
+  background-color: #f6ffed;
+  border-radius: 8rpx;
+}
+
+.merchant-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.merchant-actions .action-btn {
+  flex: 1;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.merchant-actions .action-btn.secondary {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.merchant-actions .action-btn.primary {
+  background-color: #1890FF;
+  color: #fff;
+}

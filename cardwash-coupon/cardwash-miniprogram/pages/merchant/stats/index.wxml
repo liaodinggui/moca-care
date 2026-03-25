@@ -1,0 +1,57 @@
+<!--pages/merchant/stats/index.wxml-->
+<view class="container">
+  <!-- 日期筛选 -->
+  <view class="date-filter">
+    <view class="date-item" bindtap="selectStartDate">
+      <text class="label">开始日期</text>
+      <text class="value">{{startDate}}</text>
+    </view>
+    <view class="divider">-</view>
+    <view class="date-item" bindtap="selectEndDate">
+      <text class="label">结束日期</text>
+      <text class="value">{{endDate}}</text>
+    </view>
+    <button class="query-btn" bindtap="loadStats">查询</button>
+  </view>
+
+  <!-- 总计卡片 -->
+  <view class="summary-card">
+    <view class="summary-item">
+      <text class="summary-label">总核销数量</text>
+      <text class="summary-value">{{totalWriteOff}}</text>
+    </view>
+    <view class="summary-divider"></view>
+    <view class="summary-item">
+      <text class="summary-label">总营业额</text>
+      <text class="summary-value">¥{{totalRevenue}}</text>
+    </view>
+  </view>
+
+  <!-- 图表容器 -->
+  <view class="chart-container">
+    <view class="chart-title">核销数量</view>
+    <canvas type="2d" id="writeOffChart" class="chart"></canvas>
+  </view>
+
+  <view class="chart-container">
+    <view class="chart-title">营业额</view>
+    <canvas type="2d" id="revenueChart" class="chart"></canvas>
+  </view>
+
+  <!-- 数据列表 -->
+  <view class="data-list">
+    <view class="list-title">每日数据明细</view>
+    <view class="list-header">
+      <view class="col">日期</view>
+      <view class="col">核销数量</view>
+      <view class="col">营业额</view>
+    </view>
+    <view class="list-body">
+      <view class="list-row" wx:for="{{dailyList}}" wx:key="date">
+        <view class="col">{{item.date}}</view>
+        <view class="col">{{item.writeOffCount}}</view>
+        <view class="col">¥{{item.revenue}}</view>
+      </view>
+    </view>
+  </view>
+</view>

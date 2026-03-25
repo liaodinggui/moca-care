@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moca.cardwash.mapper.CouponMapper">
+
+    <resultMap id="BaseResultMap" type="com.moca.cardwash.entity.Coupon">
+        <id column="id" property="id"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="images" property="images"/>
+        <result column="price" property="price"/>
+        <result column="buy_amount" property="buyAmount"/>
+        <result column="send_amount" property="sendAmount"/>
+        <result column="stock" property="stock"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, merchant_id, name, description, images, price, buy_amount, send_amount, stock, status, create_time, update_time
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM coupon
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByMerchantId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM coupon
+        WHERE merchant_id = #{merchantId}
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectAvailableList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM coupon
+        WHERE status = 1 AND stock > 0
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 查询包含商家信息的洗车券列表 -->
+    <select id="selectAvailableListWithMerchant" resultType="com.moca.cardwash.dto.response.CouponWithMerchantVO">
+        SELECT
+            c.id, c.merchant_id, c.name, c.description, c.images, c.price,
+            c.buy_amount, c.send_amount, c.stock, c.status,
+            m.name AS merchantName
+        FROM coupon c
+        INNER JOIN merchant m ON c.merchant_id = m.id
+        WHERE c.status = 1 AND c.stock > 0
+        ORDER BY c.create_time DESC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO coupon (merchant_id, name, description, images, price, buy_amount, send_amount, stock, status)
+        VALUES (#{merchantId}, #{name}, #{description}, #{images}, #{price}, #{buyAmount}, #{sendAmount}, #{stock}, #{status})
+    </insert>
+
+    <update id="update">
+        UPDATE coupon
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="images != null">images = #{images},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="buyAmount != null">buy_amount = #{buyAmount},</if>
+            <if test="sendAmount != null">send_amount = #{sendAmount},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE coupon
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <update id="decreaseStock">
+        UPDATE coupon
+        SET stock = stock - #{quantity}
+        WHERE id = #{id} AND stock >= #{quantity}
+    </update>
+
+    <update id="increaseStock">
+        UPDATE coupon
+        SET stock = stock + #{quantity}
+        WHERE id = #{id}
+    </update>
+</mapper>

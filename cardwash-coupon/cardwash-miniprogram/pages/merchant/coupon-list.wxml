@@ -1,0 +1,51 @@
+<!--pages/merchant/coupon-list.wxml-->
+<view class="coupon-list-page">
+  <!-- 洗车券列表 -->
+  <view class="coupon-list">
+    <view class="coupon-card" wx:for="{{couponList}}" wx:key="id">
+      <view class="coupon-header">
+        <view class="coupon-image">
+          <image src="{{item.firstImage}}" mode="aspectFill" />
+        </view>
+        <view class="coupon-info-wrap">
+          <view class="coupon-name">{{item.name}}</view>
+          <view class="coupon-status status-{{item.status}}">
+            {{item.status === 1 ? '上架中' : '已下架'}}
+          </view>
+        </view>
+      </view>
+      <view class="coupon-info">
+        <view class="info-row">
+          <text class="label">价格</text>
+          <text class="value price">¥{{item.price}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">促销</text>
+          <text class="value">{{item.buyAmount > 0 ? '买' + item.buyAmount + '送' + item.sendAmount : '无'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">库存</text>
+          <text class="value">{{item.stock}}张</text>
+        </view>
+      </view>
+      <view class="coupon-actions">
+        <button class="action-btn" bindtap="editCoupon" data-id="{{item.id}}">编辑</button>
+        <button class="action-btn {{item.status === 1 ? 'off' : 'on'}}" bindtap="toggleStatus" data-id="{{item.id}}" data-status="{{item.status}}">
+          {{item.status === 1 ? '下架' : '上架'}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{couponList.length === 0}}">
+    <text class="empty-icon">🈚</text>
+    <text class="empty-text">暂无洗车券</text>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="goToEdit">
+    <text class="add-icon">+</text>
+    <text class="add-text">创建新洗车券</text>
+  </view>
+</view>
