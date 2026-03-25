@@ -236,7 +236,7 @@
 cardwash-coupon/
 ├── cardwash-server/           # 后端 Spring Boot 项目
 │   ├── src/main/java/
-│   │   └── com/example/cardwash/
+│   │   └── com/moca/cardwash/
 │   │       ├── CardwashApplication.java
 │   │       ├── config/        # 配置类
 │   │       │   ├── MybatisConfig.java

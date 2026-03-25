@@ -8,7 +8,7 @@
 cardwash-coupon/
 ├── cardwash-server/          # 后端 Spring Boot 项目
 │   ├── src/main/java/
-│   │   └── com/example/cardwash/
+│   │   └── com/moca/cardwash/
 │   │       ├── config/       # 配置类
 │   │       ├── controller/   # 控制器
 │   │       ├── service/      # 服务层
