@@ -2,6 +2,106 @@
 
 基于 Spring Boot 3.x + 微信小程序的洗车优惠券管理平台。
 
+
+
+## 登录页
+
+![image-20260326102324380](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326102324380.png)
+
+![image-20260326102344040](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326102344040.png)
+
+## 商家端页面展示
+
+商家首次登录，新增店铺
+
+![image-20260326102609797](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326102609797.png)
+
+支持一个商家拥有多家店铺，选择对应店铺登入
+
+![image-20260326102802303](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326102802303.png)
+
+
+
+商家首页
+
+![image-20260326103600028](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103600028.png)
+
+
+
+扫描核销用户订单
+
+![image-20260326102857538](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326102857538.png)
+
+
+
+洗车卷管理
+
+![image-20260326103055911](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103055911.png)
+
+![image-20260326103039904](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103039904.png)
+
+
+
+订单管理
+
+![image-20260326103645257](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103645257.png)
+
+
+
+订单详情
+
+![image-20260326103716470](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103716470.png)
+
+
+
+数据统计，查看每日营销情况
+
+![image-20260326103737772](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103737772.png)
+
+![image-20260326103747209](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103747209.png)
+
+
+
+## 客户端页面展示
+
+首页
+
+![image-20260326103838808](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103838808.png)
+
+
+
+![image-20260326103855294](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103855294.png)
+
+
+
+![image-20260326103930482](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326103930482.png)
+
+查看订单
+
+![image-20260326104403944](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326104403944.png)
+
+
+
+订单详情展示核销二维码 并且查看核销进度
+
+![image-20260326104441678](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326104441678.png)
+
+
+
+
+
+我的个人信息
+
+![image-20260326104508087](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326104508087.png)
+
+
+
+修改个人信息
+
+![image-20260326104544818](C:\Users\16258\AppData\Roaming\Typora\typora-user-images\image-20260326104544818.png)
+
+
+
 ## 项目结构
 
 ```
@@ -130,6 +230,7 @@ java -jar target/cardwash-server-1.0.0-SNAPSHOT.jar
 - 扫码核销用户订单
 - 客户订单管理
 - 洗车券管理（创建、编辑、上下架）
+- 数据统计
 
 ## 配置文件说明
 
@@ -174,7 +275,6 @@ qr:
 
 ## 开发计划
 
-- [ ] 数据统计页面
 - [ ] 手工录入订单号核销
 - [ ] 图片上传功能
 - [ ] 微信支付接入
